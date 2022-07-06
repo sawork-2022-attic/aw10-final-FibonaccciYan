@@ -1,0 +1,186 @@
+openapi: "3.0.3"
+info:
+  version: 0.0.1
+  title: MicroPoS
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /cart:
+    get:
+      summary: List all items
+      operationId: listItems
+      tags:
+        - items
+      responses:
+        '200':
+          description: A paged array of Items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Items"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /cart/{productId}:
+    post:
+      summary: put a Product By Id
+      operationId: putProductById
+      tags:
+        - item
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: The id of the product to add
+          schema:
+            type: string
+      responses:
+        201:
+          description: Successfully added.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Items"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /delivery:
+    get:
+      summary: View Delivery
+      operationId: viewDelivery
+      tags:
+        - orders
+      responses:
+        '200':
+          description: A paged array of orders
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Orders"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /order:
+    post:
+      summary: Summit Order
+      operationId: summitOrder
+      tags:
+        - items
+      responses:
+        '201':
+          description: A paged array of items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Items"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /products:
+    get:
+      summary: List all products
+      operationId: listProducts
+      tags:
+        - products
+      responses:
+        '200':
+          description: A paged array of products
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /products/{productId}:
+    get:
+      summary: Info for a specific product
+      operationId: showProductById
+      tags:
+        - product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: The id of the product to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: double
+        image:
+          type: string
+    Products:
+      type: array
+      items:
+        $ref: "#/components/schemas/Product"
+    Item:
+      type: object
+      required:
+        - product
+        - quantity
+      properties:
+        product:
+          type: Product
+        quantity:
+          type: int
+    Items:
+      type: array
+      items:
+        $ref: "#/components/schemas/Item"
+    Orders:
+      type: array
+      items:
+        $ref: "#/components/schemas/Items"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
