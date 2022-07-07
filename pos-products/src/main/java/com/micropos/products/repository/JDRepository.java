@@ -49,6 +49,7 @@ public class JDRepository implements ProductRepository {
 
         for (Element el : elements) {
             String id = el.attr("data-spu");
+            System.out.println(id);
             String img = "https:".concat(el.getElementsByTag("img").eq(0).attr("data-lazy-img"));
             String price = el.getElementsByAttribute("data-price").text();
             String title = el.getElementsByClass("p-name").eq(0).text();

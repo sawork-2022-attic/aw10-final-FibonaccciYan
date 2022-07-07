@@ -1,6 +1,6 @@
 spring:
   application:
-    name: pos-webui
+    name: pos-frontend
 ---
 spring:
   config:
@@ -13,4 +13,4 @@ eureka:
 
 ---
 server:
-  port: 8090
+  port: 8088

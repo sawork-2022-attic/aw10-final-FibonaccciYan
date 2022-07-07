@@ -28,7 +28,7 @@ public class DeliveryController {
     @Override
     public void accept(Item[] items) {
       orders.add(Arrays.asList(items));
-      System.out.println("add new order!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      System.out.println("Add new order:" + items.toString());
     }
   }
 

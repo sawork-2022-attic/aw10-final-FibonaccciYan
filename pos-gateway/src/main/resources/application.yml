@@ -24,10 +24,10 @@ spring:
           predicates:
             - Path=/delivery/**
         - id: pos-frontend
-            uri: lb://pos-frontend
-            predicates:
-              - Path=/**
+          uri: lb://pos-frontend
+          predicates:
+            - Path=/**
           filters:
 
 server:
-  port: 8081
+  port: 8080

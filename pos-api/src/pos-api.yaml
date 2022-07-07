@@ -26,7 +26,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /cart/{productId}:
+  /cart/add/{productId}:
     post:
       summary: put a Product By Id
       operationId: putProductById

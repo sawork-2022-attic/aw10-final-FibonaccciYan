@@ -1,4 +1,4 @@
-package com.micropos.webui.control;
+package com.micropos.frontend.control;
 
 import com.micropos.carts.model.Cart;
 import com.micropos.carts.model.Item;
@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 

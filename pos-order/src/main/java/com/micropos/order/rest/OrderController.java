@@ -42,7 +42,7 @@ public class OrderController {
     }
 
     private List<Item> getCart() throws Exception {
-        String url = "http://localhost:8081/cart";
+        String url = "http://localhost:8080/cart";
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
