@@ -36,12 +36,27 @@ public class CartController {
         return this.cartService.getItems();
     }
 
-    @PostMapping(value = "/{productId}")
-    public Mono<ResponseEntity<Boolean>> putProductById(@PathVariable String productId) {
+    @PostMapping(value = "/add/{productId}")
+    public Flux<Item> putProductById(@PathVariable String productId) {
         boolean flag = cartService.putItem(productId);
-        if (flag)
-            return Mono.just(new ResponseEntity<>(flag, HttpStatus.CREATED));
-        else
-            return Mono.just(new ResponseEntity<>(flag, HttpStatus.NOT_FOUND));
+        return this.cartService.getItems();
+    }
+
+    @PostMapping(value = "/del/{productId}")
+    public Flux<Item> delProductById(@PathVariable String productId) {
+        boolean flag = cartService.delItem(productId);
+        return this.cartService.getItems();
+    }
+
+    @PostMapping(value = "/min/{productId}")
+    public Flux<Item> minProductById(@PathVariable String productId) {
+        boolean flag = cartService.modItem(productId, -1);
+        return this.cartService.getItems();
+    }
+
+    @PostMapping(value = "/clear")
+    public Flux<Item> clear() {
+        boolean flag = cartService.clearItem();
+        return this.cartService.getItems();
     }
 }

@@ -23,6 +23,10 @@ spring:
           uri: lb://pos-integration
           predicates:
             - Path=/delivery/**
+        - id: pos-frontend
+            uri: lb://pos-frontend
+            predicates:
+              - Path=/**
           filters:
 
 server:

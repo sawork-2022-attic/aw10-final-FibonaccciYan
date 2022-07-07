@@ -7,7 +7,7 @@ import com.micropos.products.model.Product;
 import com.micropos.products.repository.JDRepository;
 import com.micropos.products.service.ProductServiceImpl;
 
-public class Cart implements Serializable {
+public class    Cart implements Serializable {
 
     private List<Item> items = new ArrayList<>();
     private List<Product> products;
@@ -17,6 +17,12 @@ public class Cart implements Serializable {
         products = new ArrayList<>();
         for (Product product : iter)
             products.add(product);
+    }
+
+    public void setItem(Item[] items) {
+        this.items.clear();
+        for (Item item : items)
+            this.items.add(item);
     }
 
     public boolean addItem(Item item) {
@@ -33,6 +39,14 @@ public class Cart implements Serializable {
 
     public List<Item> getItems() {
         return this.items;
+    }
+
+    public double total() {
+        double res = 0;
+        for (Item i : items) {
+            res += i.getProduct().getPrice() * i.getQuantity();
+        }
+        return res;
     }
 
     public boolean addItem(String id) {
